@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'star_counter.dart';
 
 void main() {
   runApp(StarCounterApp());
@@ -23,7 +24,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _repositryName = "";
+  String _repositoryName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +50,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onSubmitted: (text) {
                     setState(() {
-                      _repositryName = text;
+                      _repositoryName = text;
                     });
                   },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 32.0),
-                  child: Text(
-                    _repositryName,
+                  child: GitHubStarCounter(
+                    repositoryName: _repositoryName,
                   ),
                 )
               ],
