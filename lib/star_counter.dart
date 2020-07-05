@@ -47,11 +47,18 @@ class _GitHubStarCounterState extends State<GitHubStarCounter> {
       errorMessage = null;
     });
 
-    var repo = await github.repositories
-        .getRepository(RepositorySlug.full(widget.repositoryName));
-    setState(() {
-      repository = repo;
-    });
+    try {
+      var repo = await github.repositories
+          .getRepository(RepositorySlug.full(widget.repositoryName));
+      setState(() {
+        repository = repo;
+      });
+    } on RepositoryNotFound {
+      setState(() {
+        repository = null;
+        errorMessage = '${widget.repositoryName} not found.';
+      });
+    }
   }
 
   @override
