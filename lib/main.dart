@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'star_counter.dart';
-import 'privacy_policy.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(StarCounterApp());
@@ -16,7 +16,6 @@ class StarCounterApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => HomePage(),
-        '/privacypolicy': (context) => PrivacyPolicy(),
       },
     );
   }
@@ -67,8 +66,11 @@ class _HomePageState extends State<HomePage> {
                 FlatButton(
                   color: Colors.transparent,
                   textColor: Colors.blue,
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/privacypolicy'),
+                  onPressed: () => launch(
+                    '/#/privacypolicy',
+                    enableJavaScript: true,
+                    enableDomStorage: true,
+                  ),
                   child: Text('Privacy Policy'),
                 ),
               ],
